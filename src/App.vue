@@ -1,19 +1,29 @@
-<script setup>
-// import HelloWorld from './components/HelloWorld.vue'
+<script>
+import AppHeader from './components/AppHeader.vue'
+import AppMain from './components/AppMain.vue'
+
+export default {
+  components: {
+    AppHeader,
+    AppMain,
+  },
+
+  data() {
+    return {
+
+    }
+  },
+  methods: {
+
+  }
+}
+
 </script>
 
 <template>
-  <div class="prova">
-    <h1>YU GI OH</h1>
-  </div>
+  <AppHeader />
+
+  <AppMain />
 </template>
 
-<style lang="scss" scoped>
-.prova {
-  background-color: red;
-
-  & :hover {
-    background-color: orange;
-  }
-}
-</style>
+<style scoped lang="scss"></style>
