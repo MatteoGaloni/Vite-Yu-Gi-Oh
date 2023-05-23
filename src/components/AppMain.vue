@@ -23,8 +23,7 @@ export default {
             </div>
             <div id="cards_wrapper">
                 <div class="slide">
-                    <img class="thumb" src="../assets/vue.svg" alt="#">
-                    <p>{{ store.gameCards[0] }}</p>
+                    <p>{{ store.gameCards[0].name }}</p>
                     <h5>TITOLO CARD</h5>
                 </div>
             </div>
