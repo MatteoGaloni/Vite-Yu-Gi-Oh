@@ -1,5 +1,7 @@
 <script>
 import { store } from '../data/store';
+import axios from 'axios';
+
 
 export default {
     name: "AppMain",
@@ -9,7 +11,26 @@ export default {
             store: store,
 
         }
-    }
+    },
+    methods: {
+
+        changeArchetipe() {
+            this.store.gameCards = [];
+            // console.log("Deve stampare prova", this.store.prova)
+            axios.get(this.store.urlBluEyes).then(risposta => {
+                console.log(risposta);
+                this.store.gameCards = risposta.data.data;
+                // [0].card_images[0]
+                console.log("il risultato è", this.store.gameCards);
+
+            }).catch(errore => {
+                console.error("ERRORE", errore);
+                this.store.gameCards = [];
+            })
+        }
+    },
+
+
 }
 
 
@@ -19,9 +40,9 @@ export default {
     <div class="input-group my-3 container" style="width: 20rem">
         <select class=" custom-select" id="inputGroupSelect02">
             <option value="1">Alien</option>
-            <option value="2">Pippo</option>
-            <option value="3">Topolino</option>
+            <option @click="changeArchetipe()" value="2">Blue-Eyes</option>
         </select>
+        <button @click="changeArchetipe()">cliccami</button>
     </div>
 
     <main>
