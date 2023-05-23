@@ -9,6 +9,7 @@ export default {
     data() {
         return {
             store: store,
+            selected: 1,
 
         }
     },
@@ -38,11 +39,10 @@ export default {
 
 <template>
     <div class="input-group my-3 container" style="width: 20rem">
-        <select class=" custom-select" id="inputGroupSelect02">
+        <select @change="changeArchetipe()" v-model="selected" class="custom-select" id="inputGroupSelect02">
             <option value="1">Alien</option>
-            <option @click="changeArchetipe()" value="2">Blue-Eyes</option>
+            <option value="2">Blue-Eyes</option>
         </select>
-        <button @click="changeArchetipe()">cliccami</button>
     </div>
 
     <main>
@@ -87,7 +87,6 @@ main {
 
     #cards_wrapper {
         min-height: 300px;
-        background-color: pink;
         display: flex;
         flex-wrap: wrap;
     }
