@@ -22,9 +22,9 @@ export default {
                 <h3>FOUND 50 CARDS</h3>
             </div>
             <div id="cards_wrapper">
-                <div class="slide">
-                    <p>{{ store.gameCards[0].name }}</p>
-                    <h5>TITOLO CARD</h5>
+                <div v-for="item in store.gameCards" class="slide">
+                    <img :src="item.card_images[0].image_url" alt="">
+                    <h5>{{ item.name }}</h5>
                 </div>
             </div>
         </div>
@@ -59,5 +59,9 @@ main {
     width: calc(100% /5);
     padding: 1rem;
     background-color: orange;
+
+    img {
+        width: 100%;
+    }
 }
 </style>
