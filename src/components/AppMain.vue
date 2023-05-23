@@ -1,8 +1,16 @@
 <script>
+import { store } from '../data/store';
+
 export default {
     name: "AppMain",
-}
 
+    data() {
+        return {
+            store: store,
+
+        }
+    }
+}
 
 
 </script>
@@ -10,21 +18,15 @@ export default {
 <template>
     <main>
         <div id="cards_frame" class="container">
-            <p>FOUND 50 CARDS</p>
+            <div id="cards_header">
+                <h3>FOUND 50 CARDS</h3>
+            </div>
             <div id="cards_wrapper">
                 <div class="slide">
                     <img class="thumb" src="../assets/vue.svg" alt="#">
-                    <p>Descrizione</p>
+                    <p>{{ store.gameCards[0] }}</p>
                     <h5>TITOLO CARD</h5>
                 </div>
-                <div class="slide">
-                    <img class="thumb" src="../assets/vue.svg" alt="#">
-                    <p>Descrizione</p>
-                    <h5>TITOLO CARD</h5>
-                </div>
-
-
-
             </div>
         </div>
 
@@ -39,6 +41,11 @@ main {
         min-height: 600px;
         background-color: white;
 
+    }
+
+    #cards_header {
+        background-color: #222;
+        color: white;
     }
 
     #cards_wrapper {
