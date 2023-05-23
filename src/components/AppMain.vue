@@ -19,13 +19,16 @@ export default {
     <main>
         <div id="cards_frame" class="container">
             <div id="cards_header">
-                <h3>FOUND 50 CARDS</h3>
+                <h3>FOUND {{ store.gameCards.length }} CARDS</h3>
             </div>
             <div id="cards_wrapper">
-                <div v-for="item in store.gameCards" class="slide">
-                    <img :src="item.card_images[0].image_url" alt="">
-                    <h5>{{ item.name }}</h5>
-                </div>
+                <template v-for="item in store.gameCards">
+                    <div v-if="item.archetype == 'Alien'" class="slide">
+                        <img :src="item.card_images[0].image_url" alt="">
+                        <h5>{{ item.name }}</h5>
+                        <p>{{ item.archetype }}</p>
+                    </div>
+                </template>
             </div>
         </div>
 
