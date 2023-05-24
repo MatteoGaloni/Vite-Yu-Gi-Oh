@@ -2,38 +2,44 @@
 import { store } from '../data/store';
 import axios from 'axios';
 
-
 export default {
     name: "AppMain",
 
     data() {
         return {
             store: store,
-            selected: 1,
-
+            selected: "1",
         }
     },
     methods: {
-
         changeArchetipe() {
             this.store.gameCards = [];
-            // console.log("Deve stampare prova", this.store.prova)
-            axios.get(this.store.urlBluEyes).then(risposta => {
-                console.log(risposta);
-                this.store.gameCards = risposta.data.data;
-                // [0].card_images[0]
-                console.log("il risultato è", this.store.gameCards);
+            console.log("il valore del select è", this.selected)
+            if (this.selected == 2) {
+                axios.get(this.store.urlBluEyes).then(risposta => {
+                    console.log("ARCHETIPO BLUE_EYES", risposta);
+                    this.store.gameCards = risposta.data.data;
+                    console.log("il risultato è", this.store.gameCards);
 
-            }).catch(errore => {
-                console.error("ERRORE", errore);
-                this.store.gameCards = [];
-            })
+                }).catch(errore => {
+                    console.error("ERRORE ARCHETIPO BLUE_EYES", errore);
+                    this.store.gameCards = [];
+                })
+            } else {
+                axios.get(this.store.urlAlien).then(risposta => {
+                    console.log(risposta);
+                    this.store.gameCards = risposta.data.data;
+                    console.log("il risultato è", this.store.gameCards);
+
+                }).catch(errore => {
+                    console.error("ERRORE", errore);
+                    this.store.gameCards = [];
+                });
+
+            }
         }
     },
-
-
 }
-
 
 </script>
 
@@ -66,7 +72,6 @@ export default {
                 </template>
             </div>
         </div>
-
     </main>
 </template> 
 

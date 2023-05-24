@@ -17,15 +17,13 @@ export default {
 
     }
   },
-  methods: {
+  methods: {},
 
-  },
   mounted() {
     console.log("Deve stampare prova", this.store.prova)
-    axios.get(this.store.urlYu).then(risposta => {
+    axios.get(this.store.urlAlien).then(risposta => {
       console.log(risposta);
       this.store.gameCards = risposta.data.data;
-      // [0].card_images[0]
       console.log("il risultato è", this.store.gameCards);
 
     }).catch(errore => {
@@ -34,7 +32,6 @@ export default {
     });
   }
 }
-
 </script>
 
 <template>
