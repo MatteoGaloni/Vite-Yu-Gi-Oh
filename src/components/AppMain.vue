@@ -8,14 +8,15 @@ export default {
     data() {
         return {
             store: store,
-            selected: "1",
+            selected: null,
+            options: [],
         }
     },
     methods: {
-        changeArchetipe() {
-            this.store.gameCards = [];
+        changeArchetipe(i) {
+            this.store.gameCards = [];;
             console.log("il valore del select è", this.selected)
-            if (this.selected == 2) {
+            if (this.selected == 1) {
                 axios.get(this.store.urlBluEyes).then(risposta => {
                     console.log("ARCHETIPO BLUE_EYES", risposta);
                     this.store.gameCards = risposta.data.data;
@@ -39,18 +40,34 @@ export default {
             }
         }
     },
+    mounted() {
+        console.log("Deve stampare prova", this.store.prova)
+        axios.get(this.store.urlarchetype).then(result => {
+            console.log(result);
+            this.options = result.data;
+            console.log("L'array Option ora contiene ", this.options);
+
+        }).catch(error => {
+            console.error("ERRORE", error);
+            this.options = [];
+        });
+
+    }
 }
 
 </script>
 
 <template>
+    <!-- new component? -->
     <div class="input-group my-3 container" style="width: 20rem">
         <select @change="changeArchetipe()" v-model="selected" class="custom-select" id="inputGroupSelect02">
-            <option value="1">Alien</option>
-            <option value="2">Blue-Eyes</option>
+            <option v-for="(option, i) in this.options" :value="i">{{ option.archetype_name }}</option>
+            <!-- <option value="2">Blue-Eyes</option> -->
         </select>
     </div>
-
+    <!-- <div>
+                <pre>{{ this.options }}</pre>
+            </div> -->
     <main>
         <div id="cards_frame" class="container">
             <div class="d-flex justify-content-center">
@@ -59,15 +76,16 @@ export default {
                     Loading...
                 </button>
             </div>
+            <!-- new component? -->
             <div id="cards_header" class="p-3">
                 <h5 class="mb-0">Found {{ store.gameCards.length }} cards</h5>
             </div>
             <div id="cards_wrapper">
                 <template v-for="item in store.gameCards">
-                    <div class="slide">
+                    <div class="slide text-center">
                         <img :src="item.card_images[0].image_url" alt="">
-                        <h5>{{ item.name }}</h5>
-                        <p>{{ item.archetype }}</p>
+                        <h5 class="text-white p-1">{{ item.name }}</h5>
+                        <p class="p-1">{{ item.archetype }}</p>
                     </div>
                 </template>
             </div>
