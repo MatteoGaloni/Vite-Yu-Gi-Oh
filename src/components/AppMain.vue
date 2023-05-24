@@ -15,33 +15,33 @@ export default {
     methods: {
         changeArchetipe(i) {
             this.store.gameCards = [];;
+            console.log("Il valore dell'indice è ", i)
             console.log("il valore del select è", this.selected)
-            if (this.selected == 1) {
-                axios.get(this.store.urlBluEyes).then(risposta => {
-                    console.log("ARCHETIPO BLUE_EYES", risposta);
-                    this.store.gameCards = risposta.data.data;
-                    console.log("il risultato è", this.store.gameCards);
+            // if (this.selected == 1) {
+            //     axios.get(this.store.urlBluEyes).then(risposta => {
+            //         console.log("ARCHETIPO BLUE_EYES", risposta);
+            //         this.store.gameCards = risposta.data.data;
+            //         console.log("il risultato è", this.store.gameCards);
 
-                }).catch(errore => {
-                    console.error("ERRORE ARCHETIPO BLUE_EYES", errore);
-                    this.store.gameCards = [];
-                })
-            } else {
-                axios.get(this.store.urlAlien).then(risposta => {
-                    console.log(risposta);
-                    this.store.gameCards = risposta.data.data;
-                    console.log("il risultato è", this.store.gameCards);
+            //     }).catch(errore => {
+            //         console.error("ERRORE ARCHETIPO BLUE_EYES", errore);
+            //         this.store.gameCards = [];
+            //     })
+            // } else {
+            //     axios.get(this.store.urlAlien).then(risposta => {
+            //         console.log(risposta);
+            //         this.store.gameCards = risposta.data.data;
+            //         console.log("il risultato è", this.store.gameCards);
 
-                }).catch(errore => {
-                    console.error("ERRORE", errore);
-                    this.store.gameCards = [];
-                });
+            //     }).catch(errore => {
+            //         console.error("ERRORE", errore);
+            //         this.store.gameCards = [];
+            //     });
 
-            }
+            // }
         }
     },
     mounted() {
-        console.log("Deve stampare prova", this.store.prova)
         axios.get(this.store.urlarchetype).then(result => {
             console.log(result);
             this.options = result.data;
@@ -60,14 +60,14 @@ export default {
 <template>
     <!-- new component? -->
     <div class="input-group my-3 container" style="width: 20rem">
-        <select @change="changeArchetipe()" v-model="selected" class="custom-select" id="inputGroupSelect02">
+        <select @change="changeArchetipe(i)" v-model="selected" class="custom-select" id="inputGroupSelect02">
             <option v-for="(option, i) in this.options" :value="i">{{ option.archetype_name }}</option>
             <!-- <option value="2">Blue-Eyes</option> -->
         </select>
     </div>
     <!-- <div>
-                <pre>{{ this.options }}</pre>
-            </div> -->
+                            <pre>{{ this.options }}</pre>
+                        </div> -->
     <main>
         <div id="cards_frame" class="container">
             <div class="d-flex justify-content-center">
