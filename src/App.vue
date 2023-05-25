@@ -20,6 +20,7 @@ export default {
   methods: {},
 
   mounted() {
+
     console.log("Deve stampare prova", this.store.prova)
     axios.get(this.store.urlAlien).then(result => {
       console.log(result);
