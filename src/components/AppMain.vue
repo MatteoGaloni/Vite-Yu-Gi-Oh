@@ -22,12 +22,10 @@ export default {
             axios.get(this.store.urlGeneral).then(risposta => {
                 this.store.gameCards = risposta.data.data;
 
-
             }).catch(errore => {
                 console.error("ERRORE ARCHETIPO BLUE_EYES", errore);
                 this.store.gameCards = [];
             })
-
             // axios.get(this.store.urlAlien).then(risposta => {
             //     console.log(risposta);
             //     this.store.gameCards = risposta.data.data;
@@ -37,8 +35,6 @@ export default {
             //     console.error("ERRORE", errore);
             //     this.store.gameCards = [];
             // });
-
-
         }
     },
     mounted() {
@@ -69,10 +65,10 @@ export default {
     <main>
         <div id="cards_frame" class="container">
             <div class="d-flex justify-content-center">
-                <!-- <button v-if="store.gameCards.length < 20" class="btn btn-primary" type="button" disabled>
-                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                        Loading...
-                    </button> -->
+                <button v-if="store.loading == false" class="btn btn-primary" type="button" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Loading...
+                </button>
             </div>
             <!-- new component? -->
             <div id="cards_header" class="p-3">

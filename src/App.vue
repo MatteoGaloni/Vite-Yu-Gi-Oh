@@ -25,6 +25,7 @@ export default {
       console.log(result);
       this.store.gameCards = result.data.data;
       console.log("il risultato è", this.store.gameCards);
+      this.store.loading = true
 
     }).catch(error => {
       console.error("ERRORE", error);
